@@ -1,0 +1,68 @@
+<?php
+
+namespace App\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CommentRepository;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
+
+/**
+ * @ApiResource(
+ *      normalizationContext={"groups"={"comment:read"}},
+ *      denormalizationContext={"groups"={"comment:write"}}
+ * )
+ * @ORM\Entity(repositoryClass=CommentRepository::class)
+ */
+class Comment
+{
+    /**
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="text")
+     * 
+     * @Groups({"comment:read", "comment:write"})
+     */
+    private $content;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * 
+     * @Groups("comment:read")
+     */
+    private $createAt;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getContent(): ?string
+    {
+        return $this->content;
+    }
+
+    public function setContent(string $content): self
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    public function getCreateAt(): ?\DateTimeInterface
+    {
+        return $this->createAt;
+    }
+
+    public function setCreateAt(\DateTimeInterface $createAt): self
+    {
+        $this->createAt = $createAt;
+
+        return $this;
+    }
+}
