@@ -28,7 +28,7 @@ class Tag
     /**
      * @ORM\Column(type="string", length=255)
      * 
-     * @Groups({"tag:read", "tag:write"})
+     * @Groups({"tag:read", "tag:write", "article:read", "article:write"})
      */
     private $label;
 

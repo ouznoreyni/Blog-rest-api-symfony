@@ -86,6 +86,8 @@ class Article
 
     /**
      * @ORM\ManyToMany(targetEntity=Tag::class, inversedBy="articles")
+     * 
+     * @Groups({"article:read", "article:write"})
      */
     private $tags;
 
