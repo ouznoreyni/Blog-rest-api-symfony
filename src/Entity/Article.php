@@ -79,13 +79,14 @@ class Article
 
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="article", orphanRemoval=true)
+     *  @ApiSubresource
      * 
      * @Groups("article:read")
      */
     private $comments;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Tag::class, inversedBy="articles")
+     * @ORM\ManyToMany(targetEntity=Tag::class, inversedBy="articles", cascade="persist")
      * 
      * @Groups({"article:read", "article:write"})
      */
