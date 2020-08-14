@@ -20,20 +20,22 @@ class Comment
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * 
+     * @Groups({"comment:read", "article:read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="text")
      * 
-     * @Groups({"comment:read", "comment:write"})
+     * @Groups({"comment:read", "comment:write", "article:read"})
      */
     private $content;
 
     /**
      * @ORM\Column(type="datetime")
      * 
-     * @Groups("comment:read")
+     * @Groups({"comment:read", "article:read"})
      */
     private $createAt;
 
