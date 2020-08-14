@@ -62,12 +62,6 @@ class Article
      */
     private $isPublished;
 
-    /**
-     * @ORM\Column(type="datetime")
-     * 
-     * @Groups("article:read")
-     */
-    private $publishedAt;
 
     /**
      * @ORM\Column(type="datetime",  nullable=true)
@@ -159,18 +153,6 @@ class Article
     public function setisPublished(bool $isPublished): self
     {
         $this->isPublished = $isPublished;
-
-        return $this;
-    }
-
-    public function getPublishedAt(): ?\DateTimeInterface
-    {
-        return $this->publishedAt;
-    }
-
-    public function setPublishedAt(\DateTimeInterface $publishedAt): self
-    {
-        $this->publishedAt = $publishedAt;
 
         return $this;
     }
