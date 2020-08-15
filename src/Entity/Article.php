@@ -18,6 +18,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *         "get",
  *         "post"={"security"="is_granted('ROLE_USER')"}
  *     },
+ *    itemOperations={
+ *         "get",
+ *         "put"={"security"="is_granted('edit', object)"},
+ *         "delete"={"security"="is_granted('delete', object)"}
+ *     }
  * )
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
  */
