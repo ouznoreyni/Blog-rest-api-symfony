@@ -7,6 +7,7 @@ use App\Repository\UserRepository;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\SerializedName;
 
 /**
  * @ApiResource(
@@ -45,8 +46,6 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
-     * 
-     * @Groups("user:write")
      */
     private $password;
 
@@ -70,6 +69,12 @@ class User implements UserInterface
      * @Groups({"user:read", "user:write"})
      */
     private $nom;
+
+    /**
+     * @SerializedName("password")
+     * @Groups("user:write")
+     */
+    private $plainPassword;
 
     public function getId(): ?int
     {
@@ -176,6 +181,18 @@ class User implements UserInterface
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword(string $plainPassword): self
+    {
+        $this->plainPassword = $plainPassword;
 
         return $this;
     }
