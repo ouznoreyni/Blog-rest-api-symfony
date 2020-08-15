@@ -51,6 +51,11 @@ class ArticleDataPersister implements ContextAwareDataPersisterInterface
             );
         }
 
+        // Set the author if it's a new article
+        if ($this->_request->getMethod() === 'POST') {
+            $data->setAuthor($this->_security->getUser());
+        }
+
         // Set the updatedAt value if it's not a POST request
         if ($this->_request->getMethod() !== 'POST') {
             $data->setUpdatedAt(new \DateTime());
