@@ -27,14 +27,14 @@ class User implements UserInterface
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      * 
-     * @Groups("user:read")
+     * @Groups({"user:read", "article:read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      * 
-     * @Groups({"user:read", "user:write"})
+     * @Groups({"user:read", "user:write", "article:read"})
      */
     private $username;
 
@@ -80,6 +80,8 @@ class User implements UserInterface
 
     /**
      * @ORM\OneToMany(targetEntity=Article::class, mappedBy="author")
+     * 
+     * @Groups("user:read")
      */
     private $articles;
 

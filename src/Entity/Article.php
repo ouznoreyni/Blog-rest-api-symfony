@@ -24,14 +24,14 @@ class Article
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      * 
-     * @Groups("article:read")
+     * @Groups({"article:read", "user:read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * 
-     * @Groups({"article:read", "article:write"})
+     * @Groups({"article:read", "article:write", "user:read"})
      */
     private $title;
 
@@ -96,6 +96,8 @@ class Article
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="articles")
      * @ORM\JoinColumn(nullable=false)
+     * 
+     * @Groups("article:read")
      */
     private $author;
 
